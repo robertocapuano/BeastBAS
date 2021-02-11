@@ -26,6 +26,15 @@
 
 
 
+---
+
+
+
+
+
+
+
+
 180 ifK=28andCC<MC-1thenCC=CC+1:elseifK=29andCC>0thenCC=CC-1
 190 ifk=32 then preset(X+4,Y+7):    preset(X+2,Y+2): S=15 : draw HA$:preset(X,Y):
 
