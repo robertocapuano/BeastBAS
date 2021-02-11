@@ -18,7 +18,7 @@
 92 pset(0,80):  for i=0to124:  color 8  :print#1,chr$(&hdb+RND(1)*4); : next i
 93 LINE(00,120)-(300,220),8,BF:  for P=0to10  : FOR H=0 TO 255 :SET SCROLL H,0,1,1	
 
-94  PUT SPRITE 0,(X,Y),6,2+2*(H/4mod2):PUT SPRITE 1,(X,Y),9,3+2*(H/4mod2): 
+94 if (Hmod4)=0 then  PUT SPRITE 0,(X,Y),6,2+2*(H/4mod2):PUT SPRITE 1,(X,Y),9,3+2*(H/4mod2): 
 95 :NEXTH: : nextP
 
 100 K$=inkey$:IFK$=""then100:elsek=asc(k$): screen1
