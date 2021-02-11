@@ -14,8 +14,8 @@
 
 75 color 6,6,1:SCREEN 5,3,0:: :KEYOFF:DEFINTA-Z: :open"grp:"as#1:S=&h7800 : :forI=0 to (3*64-1): READ R$: VPOKE S+I,VAL("&H"+R$):NEXTI:
 80 X=100:Y=150:  rem PUT SPRITE 0,(X,Y),6,0:PUT SPRITE 1,(X,Y),9,1:  PUT SPRITE 2,(X+30,Y),6,2:PUT SPRITE 3,(X+30,Y),9,3:
-90 pset(0,40): color 6,6,1: cls : for i=0to61 :  color 9  :print#1,chr$(&hc0+RND(1)*6); : next i
-92 pset(0,80):  for i=0to124:  color 8  :print#1,chr$(&hdb+RND(1)*4); : next i
+90 pset(0,30): color 9,6,1: cls : for i=0to61  :print#1,chr$(&hc0+RND(1)*6); : next i
+92 pset(0,80): color 8  : for i=0to124:  :print#1,chr$(&hdb+RND(1)*4); : next i
 93 LINE(00,120)-(300,220),8,BF:  for P=0to10  : FOR H=0 TO 255 :SET SCROLL H,0,1,1	
 
 94 if (Hmod4)=0 then  PUT SPRITE 0,(X,Y),6,2+2*(H/4mod2):PUT SPRITE 1,(X,Y),9,3+2*(H/4mod2): 
