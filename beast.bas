@@ -20,8 +20,8 @@
 99 H =0: F=0 :  PUT SPRITE 0,(X,Y),6,2+2*(F/4mod2):PUT SPRITE 1,(X,Y),9,3+2*(F/4mod2):
 100 K$=inkey$:IFK$=""then100:elsek=asc(k$):
 
-170 ifK=28then H=H+2:F=F+1
-180 SET SCROLL H,0,1,1 : if (Fmod4)=0 then  PUT SPRITE 0,(X,Y),6,2+2*(F/4mod2):PUT SPRITE 1,(X,Y),9,3+2*(F/4mod2): 
+170 ifK<>28then100:
+180  H=H+2:F=F+1: SET SCROLL H,0,1,1 : if (Fmod4)=0 then  PUT SPRITE 0,(X,Y),6,2+2*(F/4mod2):PUT SPRITE 1,(X,Y),9,3+2*(F/4mod2): 
 190 h=Hmod255:goto 100
 
 
