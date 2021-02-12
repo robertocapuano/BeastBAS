@@ -11,8 +11,8 @@
 22 DATA 00,00,00,00,00,00,00,00,00,00,00,0F,0F,00,00,0C
 23 DATA 00,00,00,80,00,00,00,00,00,00,00,00,00,00,00,00
 
-30 DATA 00,00,00,03,07,0F,1F,1F,1F,0F,07,03,00,00,00,00
-40 DATA 00,00,00,80,C0,E0,F0,F0,F0,E0,C0,80,00,00,00,00
+30 DATA 00,00,00,00,00,00,03,02,05,02,03,00,00,00,00,00
+40 DATA 00,00,00,00,00,00,00,C0,60,C0,00,00,00,00,00,00
 
 
 
@@ -21,11 +21,11 @@
 80 X=100:Y=150
 90 rem pset(0,30): color 9:  for i=0to61  :print#1,chr$(&hc0+RND(1)*6); : next i
 92 rem  pset(0,80): color 8  : for i=0to124:  :print#1,chr$(&hdb+RND(1)*4); : next i
-93 LINE(00,120)-(300,182),8,BF: put SPRITE 2,(220,150),15,6:  :   PUT SPRITE 0,(X,Y),6,2+2*(F/4mod2):PUT SPRITE 1,(X,Y),9,3+2*(F/4mod2):   
+93 LINE(00,120)-(300,182),8,BF: put SPRITE 2,(220,150),6,6:  :   PUT SPRITE 0,(X,Y),6,2+2*(F/4mod2):PUT SPRITE 1,(X,Y),9,3+2*(F/4mod2):   
 99 H =0: F=0 : XX=220 : YY = 150
-100 K$=inkey$: :                              IFK$=""then100:elsek=asc(k$): vpoke30217,XX: XX = (XX - 4)
+100 XX = XX - .4  :if XX<0 then XX=255 : goto 100 : else K$=inkey$: :        vpoke30217,XX:                   IFK$=""then100:elsek=asc(k$): 
 
-180 if k=28 then H=H+2:F=F+1:  h=Hmod255: SET SCROLL H,0,1,1 : if (Fmod4)=0 then FR = 2+2*(F/4mod2) : : vpoke30210, FR*4: vpoke30214, (FR+1)*4:  rem
+180 if k=28 then XX=XX-4  : H=H+2:F=F+1:  h=Hmod255: SET SCROLL H,0,1,1 : if (Fmod4)=0 then FR = 2+2*(F/4mod2) : : vpoke30210, FR*4: vpoke30214, (FR+1)*4:  rem
 
 200 ifK=31then PUT SPRITE 0,(X,Y),6,0:PUT SPRITE 1,(X,Y),9,1 : rem LINE(260,160)-(300,182),11,BF: 
 
