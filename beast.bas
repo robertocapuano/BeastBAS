@@ -11,18 +11,21 @@
 22 DATA 00,00,00,00,00,00,00,00,00,00,00,0F,0F,00,00,0C
 23 DATA 00,00,00,80,00,00,00,00,00,00,00,00,00,00,00,00
 
+30 DATA 00,00,00,03,07,0F,1F,1F,1F,0F,07,03,00,00,00,00
+40 DATA 00,00,00,80,C0,E0,F0,F0,F0,E0,C0,80,00,00,00,00
 
 
 
-75 color 6,6,1:SCREEN 5,3,0:: cls : :KEYOFF:DEFINTA-Z: :open"grp:"as#1:S=&h7800 : :forI=0 to (3*64-1): READ R$: VPOKE S+I,VAL("&H"+R$):NEXTI:
+
+75 color 8,6,1:SCREEN 5,3,0:: cls : :KEYOFF:DEFINTA-Z: :open"grp:"as#1:S=&h7800 : :forI=0 to (3*64-1+32): READ R$: VPOKE S+I,VAL("&H"+R$):NEXTI:
 80 X=100:Y=150:  rem PUT SPRITE 0,(X,Y),6,0:PUT SPRITE 1,(X,Y),9,1:  PUT SPRITE 2,(X+30,Y),6,2:PUT SPRITE 3,(X+30,Y),9,3:
-90 pset(0,30): color 9:  for i=0to61  :print#1,chr$(&hc0+RND(1)*6); : next i
-92 pset(0,80): color 8  : for i=0to124:  :print#1,chr$(&hdb+RND(1)*4); : next i
-93 LINE(00,120)-(300,182),8,BF: 
-99 H =0: F=0 : PUT SPRITE 0,(X,Y),6,2+2*(F/4mod2):PUT SPRITE 1,(X,Y),9,3+2*(F/4mod2):   
-100 K$=inkey$:                                IFK$=""then100:elsek=asc(k$):
+90 rem pset(0,30): color 9:  for i=0to61  :print#1,chr$(&hc0+RND(1)*6); : next i
+92 rem pset(0,80): color 8  : for i=0to124:  :print#1,chr$(&hdb+RND(1)*4); : next i
+93 LINE(00,120)-(300,182),8,BF: put SPRITE 2,(20,150),15,6:
+99 H =0: F=0 : XX=220 : YY = 150 :   PUT SPRITE 0,(X,Y),6,2+2*(F/4mod2):PUT SPRITE 1,(X,Y),9,3+2*(F/4mod2):   
+100 K$=inkey$: :                              IFK$=""then100:elsek=asc(k$): vpoke30216,XX: XX = (XX - 2)
 
-180 if k=28 then H=H+2:F=F+1:  h=Hmod255: SET SCROLL H,0,1,1 : if (Fmod4)=0 then  PUT SPRITE 0,(X,Y),6,2+2*(F/4mod2):PUT SPRITE 1,(X,Y),9,3+2*(F/4mod2): 
+180 if k=28 then H=H+2:F=F+1:  h=Hmod255: SET SCROLL H,0,1,1 : if (Fmod4)=0 then FR = 2+2*(F/4mod2) : PUT SPRITE 0,(X,Y),6,FR:PUT SPRITE 1,(X,Y),9,1+FR: rem : vpoke30210, FR: vpoke30214, FR+1:  rem
 
 200 ifK=31then PUT SPRITE 0,(X,Y),6,0:PUT SPRITE 1,(X,Y),9,1 : rem LINE(260,160)-(300,182),11,BF: 
 
@@ -31,9 +34,31 @@
 
 
 
+0x7600 + 12  =  = 30240 + 12
+
+8 * 16 = 
 ---
 
+/*
+SCREEN 5 (256*212 Graphic mode, 16 colours):
+Matrix                          0000-69FF
+Sprite colours                  7400-75FF
+Sprite attribute table          7600-767F
+Palette                         7680-769F
+Sprite character patterns       7800-7FFF
+*/
+#define SCR5_MATRIX				0x0000
+#define SCR5_SPRCOLOR			0x7400
+#define SCR5_SPRATTRIB			0x7600
+#define SCR5_PALETTE			0x7680
+#define SCR5_SPRPATTERN			0x7800
 
+
+7	6	5	4	3	2	1	0	 	
+Vertical Position	Byte 0
+Horizontal Position	Byte 1
+Pattern Number	Byte 2
+EC	0	0	0	Colour Code	Byte 3
 
 
 
