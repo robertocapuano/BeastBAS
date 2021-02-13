@@ -33,17 +33,17 @@
 50 DATA 00,00,00,00,00,00,03,02,05,02,03,00,00,00,00,00
 55 DATA 00,00,00,00,00,00,00,C0,60,C0,00,00,00,00,00,00
 
-60 rem on sprite gosub 2000 : sprite on :
 
 75 color 8,6,1:SCREEN 5,3,0:: cls : :KEYOFF:DEFINTA-Z: :open"grp:"as#1:S=&h7800 : :forI=0 to (4*64-1+32): READ R$: VPOKE S+I,VAL("&H"+R$):NEXTI:
-80 X=100:Y=150 : DX! = RND(1)
-90 rem pset(0,30): color 9:  for i=0to61  :print#1,chr$(&hc0+RND(1)*6); : next i
+80 X=100:Y=150 : DX! = RND(1) : P=10
+90  pset(0,30): color 9:  for i=0to61  :print#1,chr$(&hc0+RND(1)*6); : next i
 92   pset(0,80): color 8  : for i=0to124:  :print#1,chr$(&hdb+RND(1)*4); : next i
 93 LINE(00,120)-(300,182),8,BF: :   PUT SPRITE 0,(X,Y),6,0:PUT SPRITE 1,(X,Y),9,1:   PUT SPRITE 2,(220,150),6,8   
-99 H =0: F=0 : E=0 : DX=0 : vpoke30216, 0:
+98 H =0: F=0 : E=0 : DX=0 : vpoke30216, 0:
 
 100 if E=1 then vpoke30217,XX:  XX=XX+DX: if (XX<5 or XX >250) then E = 0: vpoke30216, 0 : 
 105 if A=1 then Y= Y+DY : DY=DY-SY: vpoke30208,Y : vpoke30212,Y: : if (Y>=150) thenDY=0:SY=0 :Y=150: 
+108 if E=1 and XX>95 and XX<105 and Y>120 then E=0: YY =0 : XX = 0 : vpoke30216, YY : vpoke30217,XX : beep
 110 k=0:K$=inkey$: :  IFK$=""then100:elsek=asc(k$): 
 
 180 if k=28 then  : H=H+6:F=F+1: FR=0: 
@@ -56,8 +56,14 @@
 
 1000  goto 100
 
+
+60 rem on sprite gosub 2000 : sprite on :
+
+
 2000  if k<>28ork<>29 then beep: return : else return 
 
+
+99  P = P-1 : LINE(250,00)-STEP(-50,+5),6,BF : LINE(250,0 )-STEP( -P *5, +5 ),8,BF
 
  Y= Y+DY : DY=DY-SY:  vpoke30208,Y : vpoke30212,Y : if (Y>=150) thenDY=0:SY=0 :Y=150:  
 
