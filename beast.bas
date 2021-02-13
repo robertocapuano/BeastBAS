@@ -8,10 +8,6 @@
 100 if E=1 then vpoke30217,XX:  XX=XX+DX: if (XX<5 or XX >250) then E = 0: vpoke30216, 0 : 
 105 if A=1 then Y= Y+DY : DY=DY-SY: vpoke30208,Y : vpoke30212,Y: : if (Y>=150) thenDY=0:SY=0 :Y=150:A=0
 108 if E=1 and XX>95 and XX<105 and Y>120 then E=0: YY =0 : XX = 0 : vpoke30216, YY : vpoke30217,XX : beep
-110 k=0:K$=inkey$: :  IFK$=""then100:elsek=asc(k$): 
-180 if k=28 then  : H=H+6:F=F+1: FR=0: 
-190 if k=29 then   : H=H-6:F=F+1:FR=4: 
-195 if k=32andSY=0 then DY = -8: SY=-1:A=1
+110 k=0:K$=inkey$: :  IFK$=""then100:elsek=asc(k$): if k=28 then  : H=H+6:F=F+1: FR=0: else if k=29 then   : H=H-6:F=F+1:FR=4: else if k=32andSY=0 then DY = -8: SY=-1:A=1
 196 if E=0 and RND(1)>.8 then E=1: S=SGN(RND(1)-.5) : DX = S* (RND(1)+.5) * 5 :XX=(220-S*200)/2: :vpoke30216, 150 : vpoke30217,XX
-200  h=(H+255)mod255: SET SCROLL H,0,1,1 : if (Fmod4)=0 then FR = FR+2*(F/4mod2) : : vpoke30210, FR*4: vpoke30214, (FR+1)*4:  rem
-1000  goto 100
+200  h=(H+255)mod255: SET SCROLL H,0,1,1 : if (Fmod4)=0 then FR = FR+2*(F/4mod2) : : vpoke30210, FR*4: vpoke30214, (FR+1)*4: goto 100 : else 100
