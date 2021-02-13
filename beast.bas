@@ -31,20 +31,24 @@
 40 DATA 00,00,00,00,00,00,00,00,00,00,00,C0,C0,00,00,00
 
 
+50 DATA 00,00,00,00,00,00,03,02,05,02,03,00,00,00,00,00
+55 DATA 00,00,00,00,00,00,00,C0,60,C0,00,00,00,00,00,00
+
+
 60 on sprite gosub 2000 : sprite on :
 
-75 color 8,6,1:SCREEN 5,3,0:: cls : :KEYOFF:DEFINTA-Z: :open"grp:"as#1:S=&h7800 : :forI=0 to (4*64-1): READ R$: VPOKE S+I,VAL("&H"+R$):NEXTI:
+75 color 8,6,1:SCREEN 5,3,0:: cls : :KEYOFF:DEFINTA-Z: :open"grp:"as#1:S=&h7800 : :forI=0 to (4*64-1  +32): READ R$: VPOKE S+I,VAL("&H"+R$):NEXTI:
 80 X=100:Y=150 : DX! = RND(1)
 90 rem pset(0,30): color 9:  for i=0to61  :print#1,chr$(&hc0+RND(1)*6); : next i
-92 rem  pset(0,80): color 8  : for i=0to124:  :print#1,chr$(&hdb+RND(1)*4); : next i
-93 LINE(00,120)-(300,182),8,BF: :   PUT SPRITE 0,(X,Y),6,2+2*(F/4mod2):PUT SPRITE 1,(X,Y),9,3+2*(F/4mod2):   
+92   pset(0,80): color 8  : for i=0to124:  :print#1,chr$(&hdb+RND(1)*4); : next i
+93 LINE(00,120)-(300,182),8,BF: :    PUT SPRITE 0,(X,Y),6,2:PUT SPRITE 1,(X,Y),9,3   : put SPRITE 2,(220,150),6,8:  
 99 H =0: F=0 : XX!=220 : YY = 150
-100 K$=inkey$:    :                IFK$=""then100:elsek=asc(k$): 
+100  K$=inkey$: :        vpoke30217,XX!:  K$=inkey$:    :                IFK$=""then100:elsek=asc(k$): 
 
-180 if k=28 then  : H=H+6:F=F+1:  h=Hmod255: SET SCROLL H,0,1,1 : if (Fmod4)=0 then FR = 2*(F/4mod2) : : vpoke30210, FR*4: vpoke30214, (FR+1)*4:  rem
-190 if k=29 then   : H=H-6:F=F+1:  h=(H+255)mod255: SET SCROLL H,0,1,1 : if (Fmod4)=0 then FR = 4+2*(F/4mod2) : : vpoke30210, FR*4: vpoke30214, (FR+1)*4:  rem
+180 if k=28 then : XX!=XX!-4  : H=H+6: FR=0
+190 if k=29 then : XX!=XX!+4   : H=H-6: FR=4
 
-200 ifK=32then PUT SPRITE 0,(X,Y),6,0:PUT SPRITE 1,(X,Y),9,1 : rem LINE(260,160)-(300,182),11,BF: 
+300 F=F+1: h=(H+255)mod255: SET SCROLL H,0,1,1 : if (Fmod4)=0 then FR = FR+2*(F/4mod2) : : vpoke30210, FR*4: vpoke30214, (FR+1)*4:  rem
 
 
 1000  goto 100
@@ -54,6 +58,12 @@
 
 
 
+
+
+200 ifK=32then PUT SPRITE 0,(X,Y),6,0:PUT SPRITE 1,(X,Y),9,1 : rem LINE(260,160)-(300,182),11,BF: 
+
+
+XX = XX - .4  :if XX<0 then XX=255 : goto 100 : else
 
 
 
