@@ -49,7 +49,7 @@
 180 if k=28 then  : H=H+6:F=F+1: FR=0: 
 190 if k=29 then   : H=H-6:F=F+1:FR=4: 
 195 if k=32andSY=0 then DY = -8: SY=-1:
-196 if E=0 and RND(1)>.8 then E=1: S=SGN(RND(1)-.5) : DX = S* (RND(1)+.5) * 3 :XX=(220-S*200)/2: :vpoke30216, 150 : vpoke30217,XX
+196 if E=0 and RND(1)>.8 then E=1: S=SGN(RND(1)-.5) : DX = S* (RND(1)+.5) * 5 :XX=(220-S*200)/2: :vpoke30216, 150 : vpoke30217,XX
 
 200  h=(H+255)mod255: SET SCROLL H,0,1,1 : if (Fmod4)=0 then FR = FR+2*(F/4mod2) : : vpoke30210, FR*4: vpoke30214, (FR+1)*4:  rem
 
