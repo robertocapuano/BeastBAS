@@ -34,10 +34,10 @@ run
 ```
 
 WebMSX Launch URL:
-- https://webmsx.org?MACHINE=MSX2P&DISK=https://raw.githubusercontent.com/robertocapuano/CandyBAS/PUR120/candy.dsk&BASIC_RUN=beast.bas
+- https://webmsx.org?MACHINE=MSX2P&DISK=https://raw.githubusercontent.com/robertocapuano/CandyBAS/PUR120/beast.dsk&BASIC_RUN=beast.bas
 
 MSXPen link:
-- https://msxpen.com/codes/-M1tl2_cHDuasN2gmIbj
+- https://msxpen.com/codes/-MTbfWGvTMnsPBJMVGec
 
 # Source Description
 
@@ -72,7 +72,7 @@ MSXPen link:
 ```
 - 
 ```
-8 if (A=1 and Y>=150) thenDY=0:SY=0 :Y=150:A=0:elsek=0:K$=inkey$:IFK$=""then7:elsek=asc(k$): if k=28 then H=H+6:F=F+1:FR=0:else if k=29 thenH=H-6:F=F+1:FR=4: else if k=32andSY=0 then DY = -8: SY=-1:A=1
+8 if (A=1 and Y>=150) thenDY=0:SY=0 :Y=150:A=0:elsek=0:K$=inkey$:IFK$=""then7:elsek=asc(k$): if k=28 then H=H+6:F=F+1:FR=0:else if k=29 thenH=H-6:F=F+1:FR=4: else if k=32andSY=0 then DY = -8: SY=-1:A=1 :F=1
 ```
 - 
 ```
