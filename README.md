@@ -1,7 +1,7 @@
 # BeastBAS
 BeastBAS is an horizontal scroller inspired by Shadow of the Beast in 10 lines of MSX2 BASIC v3.
 
-![screenshot](screenshot.png)
+![screenshot](screenshot.gif)
 
 # Game Logic
 Player explores a cave and jumps to avoid enemy's shots.
