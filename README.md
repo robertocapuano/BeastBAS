@@ -4,7 +4,7 @@ BeastBAS is an horizontal scroller inspired by Shadow of the Beast in 10 lines o
 ![screenshot](screenshot.gif)
 
 # Game Logic
-Player explores a cave and jumps to avoid enemy's shots.
+The Beast runs in an hellish landscape. He explores a cave and jump to avoid enemy's shots.
 
 # Controls
 - Left and Right Arrow to move
